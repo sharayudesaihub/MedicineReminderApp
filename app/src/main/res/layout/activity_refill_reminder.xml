@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#F1F8E9">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Refill Reminder"
+            android:textSize="26sp"
+            android:textColor="#388E3C"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/refillMedicineName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#DEEBDE"
+            android:hint="Medicine Name"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorLink="#616161" />
+
+        <EditText
+            android:id="@+id/dosageLeft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#E0E4E0"
+            android:hint="Dosage Left (optional)"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColorLink="#616161" />
+
+        <Button
+            android:id="@+id/pickDateBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pick Refill Date"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#616161"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/selectedDateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="No date selected"
+            android:textColor="#616161"
+            android:textColorLink="#161515" />
+
+        <Button
+            android:id="@+id/setRefillReminderBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Refill Reminder"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#66BB6A"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>

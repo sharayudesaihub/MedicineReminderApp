@@ -1,0 +1,51 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background circle -->
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M54,0c29.8,0 54,24.2 54,54s-24.2,54 -54,54S0,83.8 0,54 24.2,0 54,0z" />
+
+    <!-- Clock body -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M54,34c11,0 20,9 20,20s-9,20 -20,20 -20,-9 -20,-20 9,-20 20,-20z" />
+
+    <!-- Clock bell left -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M38,28a6,6 0 0,1 -12,-4c0,-3 3,-6 6,-6s6,3 6,6a6,6 0 0,1 0,4z" />
+
+    <!-- Clock bell right -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M82,28a6,6 0 0,1 -12,0a6,6 0 0,1 6,-6c3,0 6,3 6,6z" />
+
+    <!-- Clock leg left -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M44,78l-4,6h4l4,-4z" />
+
+    <!-- Clock leg right -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M68,78l4,6h-4l-4,-4z" />
+
+    <!-- Pill minute hand -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M52,54h4v-12h-4z" />
+
+    <!-- Pill hour hand -->
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M54,54h10v4h-10z" />
+
+    <!-- Center dot -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M53,53a1,1 0 1,0 2,0a1,1 0 1,0 -2,0" />
+</vector>
