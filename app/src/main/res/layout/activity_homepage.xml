@@ -62,6 +62,30 @@
             android:layout_height="wrap_content"
             android:text="Set Refill Reminder"
             android:layout_marginBottom="20dp" />
+
+        <Button
+            android:id="@+id/btnChatbot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chatbot Assistant"
+            android:backgroundTint="#2196F3"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/sosButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SOS"
+            android:backgroundTint="#E53935"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_marginBottom="24dp" />
+
+
     </LinearLayout>
 
 </LinearLayout>

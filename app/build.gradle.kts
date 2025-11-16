@@ -31,20 +31,20 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
-
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-    // ✅ Add CardView properly using Kotlin DSL
+    // ✅ Correct Kotlin DSL syntax
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    // ✅ CardView library
     implementation("androidx.cardview:cardview:1.0.0")
 
-    // Testing dependencies
+    // ✅ Testing libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-
 }
