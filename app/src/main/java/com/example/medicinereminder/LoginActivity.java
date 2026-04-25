@@ -1,4 +1,4 @@
-package com.example.medicinereminder; // Change this to your actual package name
+package com.example.medicinereminder;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,15 +28,14 @@ public class LoginActivity extends AppCompatActivity {
             String email = emailInput.getText().toString();
             String password = passwordInput.getText().toString();
 
-            // Dummy login check (you can add Firebase or SQLite here)
+            // Dummy login check
             if (email.equals("user@example.com") && password.equals("123456")) {
-                Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                // TODO: Navigate to Dashboard or Home page
+                Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, Homepage.class);
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
             }
         });
 

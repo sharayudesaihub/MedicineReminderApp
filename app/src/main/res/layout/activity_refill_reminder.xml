@@ -1,70 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="#F1F8E9">
+    android:background="@drawable/bg_gradient">
 
+    <!-- HEADER -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/headerSection"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="32dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Refill Reminder"
-            android:textSize="26sp"
-            android:textColor="#388E3C"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
-
-        <EditText
-            android:id="@+id/refillMedicineName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#DEEBDE"
-            android:hint="Medicine Name"
-            android:padding="12dp"
-            android:textColor="#000000"
-            android:textColorLink="#616161" />
-
-        <EditText
-            android:id="@+id/dosageLeft"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#E0E4E0"
-            android:hint="Dosage Left (optional)"
-            android:inputType="number"
-            android:padding="12dp"
-            android:textColorLink="#616161" />
-
-        <Button
-            android:id="@+id/pickDateBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pick Refill Date"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#616161"
-            android:textColor="#FFFFFF" />
+            android:text="💊 Refill Reminder"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/selectedDateText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="No date selected"
-            android:textColor="#616161"
-            android:textColorLink="#161515" />
-
-        <Button
-            android:id="@+id/setRefillReminderBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Set Refill Reminder"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#66BB6A"
-            android:textColor="#FFFFFF" />
+            android:layout_marginTop="8dp"
+            android:alpha="0.85"
+            android:text="Never run out of your medicines"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
     </LinearLayout>
-</ScrollView>
+
+    <!-- MAIN CARD (WRAP CONTENT FIXED) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="10dp"
+        app:layout_constraintTop_toBottomOf="@id/headerSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Medicine Name -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="Medicine Name"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/refillMedicineName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Dosage -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:hint="Dosage Left (optional)"
+                    android:layout_marginTop="18dp"
+                    app:boxCornerRadiusTopStart="16dp"
+                    app:boxCornerRadiusTopEnd="16dp"
+                    app:boxCornerRadiusBottomStart="16dp"
+                    app:boxCornerRadiusBottomEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dosageLeft"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Pick Date Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/pickDateBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="28dp"
+                    android:backgroundTint="#702BBC"
+                    android:text="Pick Refill Date"
+                    android:textColor="@android:color/white"
+                    app:cornerRadius="28dp"
+                    app:rippleColor="#BB86FC" />
+
+                <!-- Selected Date -->
+                <TextView
+                    android:id="@+id/selectedDateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No date selected"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:gravity="center"
+                    android:layout_marginTop="14dp"/>
+
+                <!-- Final Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/setRefillReminderBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="#702BBC"
+                    android:text="Set Refill Reminder"
+                    android:textColor="@android:color/white"
+                    app:cornerRadius="30dp"
+                    app:rippleColor="#BB86FC" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

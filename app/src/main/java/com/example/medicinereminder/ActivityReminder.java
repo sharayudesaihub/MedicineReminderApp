@@ -110,7 +110,7 @@ public class ActivityReminder extends AppCompatActivity {
             }
         });
 
-        // ✅ View All Saved Reminders (Log Output)
+        //  View All Saved Reminders (Log Output)
         Cursor cursor = databaseHelper.getAllReminders();
         if (cursor != null && cursor.moveToFirst()) {
             int nameIndex = cursor.getColumnIndex("medicine_name");

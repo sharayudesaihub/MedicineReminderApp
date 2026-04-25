@@ -1,70 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#DCEEFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_gradient"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/diseaseInfoTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Disease Information"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="16dp"/>
-
-        <!-- RadioGroup for Disease Selection -->
-        <RadioGroup
-            android:id="@+id/diseaseRadioGroup"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_gradient"
+            android:elevation="10dp"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="24dp">
 
-            <RadioButton
-                android:id="@+id/radio_fever"
+            <!-- Title -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fever" />
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="20dp"
+                android:text="🩺 Disease Information"
+                android:textColor="#0D47A1"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/radio_diabetes"
+            <!-- Disease List -->
+            <RadioGroup
+                android:id="@+id/diseaseRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_gradient"
+                android:padding="16dp">
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🌡 Fever" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="💉 Diabetes" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🤧 Cough" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="💓 Hypertension" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🫁 Asthma" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🤒 Flu" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🤕 Migraine" />
+            </RadioGroup>
+
+            <!-- Add Custom Disease -->
+            <EditText
+                android:id="@+id/customDiseaseInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#BCD6E9"
+                android:hint="Enter custom disease"
+                android:padding="12dp" />
+
+            <Button
+                android:id="@+id/addDiseaseBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#7036C3"
+                android:text="➕ Add Custom Disease"
+                android:textColor="@android:color/white" />
+
+            <!-- Severity -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Diabetes" />
+                android:layout_marginTop="20dp"
+                android:text="Select Severity"
+                android:textColor="#0B0B0B"
+                android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/radio_cough"
-                android:layout_width="wrap_content"
+            <RadioGroup
+                android:id="@+id/severityGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cough" />
-        </RadioGroup>
+                android:background="#C8D5E0"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-        <!-- Custom disease input -->
-        <EditText
-            android:id="@+id/addDiseaseEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter your disease"
-            android:inputType="text"
-            android:visibility="gone"
-            android:padding="8dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🟢 Mild" />
 
-        <!-- Add disease button -->
-        <Button
-            android:id="@+id/addDiseaseBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Custom Disease"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🟡 Moderate" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔴 Severe" />
+            </RadioGroup>
+
+            <!-- Duration -->
+            <EditText
+                android:id="@+id/durationInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="#E3F2FD"
+                android:hint="Duration (in days)"
+                android:inputType="number"
+                android:padding="12dp" />
+
+            <!-- Info Card -->
+            <TextView
+                android:id="@+id/infoCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#BBDEFB"
+                android:padding="18dp"
+                android:text="Select a disease to see details..."
+                android:textColor="#0D47A1" />
+
+            <!-- Risk Indicator -->
+            <TextView
+                android:id="@+id/riskIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text=""
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

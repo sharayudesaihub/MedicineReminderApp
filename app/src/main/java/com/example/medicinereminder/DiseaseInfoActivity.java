@@ -6,14 +6,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class DiseaseInfoActivity extends AppCompatActivity {
 
-    RadioGroup diseaseRadioGroup;
-    EditText addDiseaseEditText;
+    RadioGroup diseaseRadioGroup, severityGroup;
+    TextView infoCard, riskIndicator;
+    EditText durationInput, customDiseaseInput;
     Button addDiseaseBtn;
 
     @Override
@@ -22,63 +23,88 @@ public class DiseaseInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_disease_info);
 
         diseaseRadioGroup = findViewById(R.id.diseaseRadioGroup);
-        addDiseaseEditText = findViewById(R.id.addDiseaseEditText);
+        severityGroup = findViewById(R.id.severityGroup);
+        infoCard = findViewById(R.id.infoCard);
+        riskIndicator = findViewById(R.id.riskIndicator);
+        durationInput = findViewById(R.id.durationInput);
+        customDiseaseInput = findViewById(R.id.customDiseaseInput);
         addDiseaseBtn = findViewById(R.id.addDiseaseBtn);
 
-        // Show info when a disease is selected
-        diseaseRadioGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            RadioButton selectedRadioButton = findViewById(checkedId);
-            if (selectedRadioButton != null) {
-                String selectedDisease = selectedRadioButton.getText().toString();
-                String diseaseInfo = getDiseaseInfo(selectedDisease);
-                Toast.makeText(this, diseaseInfo, Toast.LENGTH_LONG).show();
-            }
-        });
+        diseaseRadioGroup.setOnCheckedChangeListener((group, checkedId) -> updateInfo());
+        severityGroup.setOnCheckedChangeListener((group, checkedId) -> updateInfo());
 
-        // Handle Add Disease Button
         addDiseaseBtn.setOnClickListener(v -> {
-            if (addDiseaseEditText.getVisibility() == View.GONE) {
-                addDiseaseEditText.setVisibility(View.VISIBLE);
-                addDiseaseBtn.setText("Add Disease");
-            } else {
-                String newDisease = addDiseaseEditText.getText().toString().trim();
+            String newDisease = customDiseaseInput.getText().toString().trim();
 
-                if (!newDisease.isEmpty()) {
-                    // Create a new RadioButton dynamically
-                    RadioButton radioButton = new RadioButton(this);
-                    radioButton.setText(newDisease);
-                    radioButton.setId(View.generateViewId());
-                    diseaseRadioGroup.addView(radioButton);
+            if (!newDisease.isEmpty()) {
+                RadioButton radioButton = new RadioButton(this);
+                radioButton.setText(newDisease);
+                radioButton.setLayoutParams(
+                        new RadioGroup.LayoutParams(
+                                RadioGroup.LayoutParams.MATCH_PARENT,
+                                RadioGroup.LayoutParams.WRAP_CONTENT
+                        )
+                );
 
-                    // Reset input
-                    addDiseaseEditText.setText("");
-                    addDiseaseEditText.setVisibility(View.GONE);
-                    addDiseaseBtn.setText("Add Custom Disease");
-
-                    Toast.makeText(this, "Disease Added: " + newDisease, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Please enter a disease name.", Toast.LENGTH_SHORT).show();
-                }
+                diseaseRadioGroup.addView(radioButton);
+                customDiseaseInput.setText("");
             }
         });
     }
 
-    private String getDiseaseInfo(String disease) {
-        switch (disease.toLowerCase()) {
-            case "diabetes":
-                return "Diabetes is a condition that occurs when your blood sugar (glucose) is too high.";
-            case "hypertension":
-                return "Hypertension is another term for high blood pressure.";
-            case "asthma":
-                return "Asthma is a condition that causes your airways to swell and narrow.";
-            case "cancer":
-                return "Cancer is a group of diseases involving abnormal cell growth.";
-            case "covid-19":
-                return "COVID-19 is an infectious disease caused by the SARS-CoV-2 virus.";
-            case "flu":
-                return "The flu is a contagious respiratory illness caused by influenza viruses.";
-            default:
-                return "Sorry, no information available for this disease.";
+    private void updateInfo() {
+
+        int selectedDiseaseId = diseaseRadioGroup.getCheckedRadioButtonId();
+        int selectedSeverityId = severityGroup.getCheckedRadioButtonId();
+
+        if (selectedDiseaseId == -1 || selectedSeverityId == -1) return;
+
+        RadioButton diseaseBtn = findViewById(selectedDiseaseId);
+        RadioButton severityBtn = findViewById(selectedSeverityId);
+
+        String disease = diseaseBtn.getText().toString().toLowerCase();
+        String severity = severityBtn.getText().toString();
+
+        String durationText = durationInput.getText().toString();
+        int days = durationText.isEmpty() ? 0 : Integer.parseInt(durationText);
+
+        infoCard.setText(getDiseaseInfo(disease));
+
+        if (severity.contains("Severe") || days > 7) {
+            riskIndicator.setText("⚠ HIGH RISK - Consult Doctor Immediately");
+            riskIndicator.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+        } else if (severity.contains("Moderate") || days > 3) {
+            riskIndicator.setText("🟡 MODERATE RISK - Monitor Closely");
+            riskIndicator.setTextColor(getResources().getColor(android.R.color.holo_orange_dark));
+        } else {
+            riskIndicator.setText("🟢 LOW RISK - Home Care Recommended");
+            riskIndicator.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
         }
+    }
+
+    private String getDiseaseInfo(String disease) {
+
+        if (disease.contains("fever"))
+            return "🌡 Fever\n\nSymptoms:\n• High temperature\n• Chills\n\nTreatment:\n• Rest\n• Fluids";
+
+        if (disease.contains("diabetes"))
+            return "💉 Diabetes\n\nSymptoms:\n• Frequent urination\n• Fatigue\n\nTreatment:\n• Insulin\n• Diet control";
+
+        if (disease.contains("cough"))
+            return "🤧 Cough\n\nTreatment:\n• Warm fluids\n• Steam inhalation";
+
+        if (disease.contains("hypertension"))
+            return "💓 Hypertension\n\nTreatment:\n• Low salt diet\n• BP medication";
+
+        if (disease.contains("asthma"))
+            return "🫁 Asthma\n\nTreatment:\n• Inhalers\n• Avoid triggers";
+
+        if (disease.contains("flu"))
+            return "🤒 Flu\n\nTreatment:\n• Rest\n• Fluids";
+
+        if (disease.contains("migraine"))
+            return "🤕 Migraine\n\nTreatment:\n• Pain relievers\n• Dark room";
+
+        return "No detailed information available.";
     }
 }

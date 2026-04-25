@@ -1,11 +1,11 @@
 package com.example.medicinereminder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignupActivity extends AppCompatActivity {
@@ -39,8 +39,10 @@ public class SignupActivity extends AppCompatActivity {
         } else if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
         } else {
-            // You can add logic here to save the user or move to another screen
             Toast.makeText(this, "Signup successful!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 }
